@@ -314,38 +314,12 @@ class _TimetableScreenState extends State<TimetableScreen> {
             final time = times[index];
 
             return Container(
-              color: index.isOdd
-                  ? background.withValues(alpha: 0.5)
-                  : Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 12),
-              decoration: const BoxDecoration(
-                border: Border(top: BorderSide(color: surfaceVariant)),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      time[0],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: onSurface,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      time[1],
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: onSurface,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
+              decoration: BoxDecoration(
+                color: index.isOdd
+                    ? background.withValues(alpha: 0.5)
+                    : Colors.white,
+                border: const Border(top: BorderSide(color: surfaceVariant)),
               ),
             );
           }),
