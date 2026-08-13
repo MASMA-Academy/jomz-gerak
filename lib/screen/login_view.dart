@@ -141,6 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _register() {
     debugPrint('Register');
+    Navigator.pushNamed(context, '/register');
 
     // TODO:
     // Navigate to registration screen.
@@ -177,16 +178,13 @@ class _LoginScreenState extends State<LoginScreen> {
               physics: const ClampingScrollPhysics(),
 
               child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight: screenHeight,
-                ),
+                constraints: BoxConstraints(minHeight: screenHeight),
 
                 child: Column(
                   children: [
                     // ==================================================
                     // HEADER
                     // ==================================================
-
                     SizedBox(
                       width: double.infinity,
                       height: headerHeight,
@@ -196,7 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     // ==================================================
                     // LOGIN
                     // ==================================================
-
                     _buildLoginContainer(),
                   ],
                 ),
@@ -220,10 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
         gradient: RadialGradient(
           center: Alignment.topCenter,
           radius: 1.2,
-          colors: [
-            primaryContainer,
-            primary,
-          ],
+          colors: [primaryContainer, primary],
         ),
       ),
 
@@ -239,8 +233,8 @@ class _LoginScreenState extends State<LoginScreen> {
           final double horizontalPadding = width < 600
               ? 20
               : width < 1000
-                  ? 40
-                  : 80;
+              ? 40
+              : 80;
 
           // ----------------------------------------------------------
           // RESPONSIVE LOGO
@@ -249,8 +243,8 @@ class _LoginScreenState extends State<LoginScreen> {
           final double logoSize = width < 600
               ? 64
               : width < 1000
-                  ? 72
-                  : 80;
+              ? 72
+              : 80;
 
           return Padding(
             padding: EdgeInsets.symmetric(
@@ -265,7 +259,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 // =====================================================
                 // LOGO
                 // =====================================================
-
                 Container(
                   width: logoSize,
                   height: logoSize,
@@ -273,10 +266,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
 
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
+                    border: Border.all(color: Colors.white, width: 2),
                   ),
 
                   child: Icon(
@@ -286,14 +276,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: height < 450 ? 8 : 16,
-                ),
+                SizedBox(height: height < 450 ? 8 : 16),
 
                 // =====================================================
                 // APP NAME
                 // =====================================================
-
                 FittedBox(
                   fit: BoxFit.scaleDown,
 
@@ -310,14 +297,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: height < 450 ? 4 : 8,
-                ),
+                SizedBox(height: height < 450 ? 4 : 8),
 
                 // =====================================================
                 // TAGLINE
                 // =====================================================
-
                 Text(
                   'Jadual Tepat, Stesen Dekat,\nPerjalanan Mudah.',
 
@@ -335,32 +319,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                SizedBox(
-                  height: height < 450 ? 8 : 16,
-                ),
+                SizedBox(height: height < 450 ? 8 : 16),
 
                 // =====================================================
                 // TRANSPORT IMAGE
                 // =====================================================
-
                 Flexible(
                   child: SizedBox(
                     width: width < 600
                         ? width * 0.85
                         : width < 1000
-                            ? width * 0.65
-                            : 500,
+                        ? width * 0.65
+                        : 500,
 
                     child: Image.network(
                       'https://lh3.googleusercontent.com/aida-public/AB6AXuBx8X4vossI4LgFWaNOIaF2IX04IoSxALyqLePESYZ8OUJP63ggrGWfueFqfXnWtnXmh9wJICsB-nSBYCKLSKbI9m4lcnEkd_EN1unqhQheT0XoWRTgAVwebUMSi987iXlj2jSCfpAFZ_2f-q-z91eQgIuLgP2wWZw1aQQAAudo4ngy_P20COR78AqKftX_-H8yN9gSBQI5tjGbi8-zUIbpRS0Y758DonRA8pFVM3GCWvne3nwLPRMC',
 
                       fit: BoxFit.contain,
 
-                      errorBuilder: (
-                        context,
-                        error,
-                        stackTrace,
-                      ) {
+                      errorBuilder: (context, error, stackTrace) {
                         return Icon(
                           Icons.train,
                           size: logoSize,
@@ -411,9 +388,7 @@ class _LoginScreenState extends State<LoginScreen> {
           // FORM WIDTH
           // ----------------------------------------------------------
 
-          final double formWidth = width > 600
-              ? 500
-              : width;
+          final double formWidth = width > 600 ? 500 : width;
 
           // ----------------------------------------------------------
           // RESPONSIVE PADDING
@@ -422,8 +397,8 @@ class _LoginScreenState extends State<LoginScreen> {
           final double horizontalPadding = width < 600
               ? 20
               : width < 1000
-                  ? 40
-                  : 60;
+              ? 40
+              : 60;
 
           return Center(
             child: Padding(
@@ -435,9 +410,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: formWidth,
-                ),
+                constraints: BoxConstraints(maxWidth: formWidth),
 
                 child: _buildLoginForm(),
               ),
@@ -460,14 +433,9 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // LOGIN TITLE
         // ============================================================
-
         Row(
           children: [
-            const Icon(
-              Icons.person_outline,
-              color: onSurface,
-              size: 24,
-            ),
+            const Icon(Icons.person_outline, color: onSurface, size: 24),
 
             const SizedBox(width: 8),
 
@@ -488,7 +456,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // EMAIL / PHONE
         // ============================================================
-
         _buildTextField(
           controller: emailController,
           hintText: 'Email atau No. Telefon',
@@ -501,7 +468,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // PASSWORD
         // ============================================================
-
         _buildPasswordField(),
 
         const SizedBox(height: 10),
@@ -509,7 +475,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // FORGOT PASSWORD
         // ============================================================
-
         TextButton(
           onPressed: _forgotPassword,
 
@@ -535,7 +500,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // LOGIN BUTTON
         // ============================================================
-
         SizedBox(
           width: double.infinity,
           height: 54,
@@ -578,7 +542,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // OR DIVIDER
         // ============================================================
-
         Row(
           children: [
             Expanded(
@@ -589,9 +552,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
 
               child: Text(
                 'atau',
@@ -618,7 +579,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // GOOGLE LOGIN
         // ============================================================
-
         SizedBox(
           width: double.infinity,
           height: 52,
@@ -630,9 +590,7 @@ class _LoginScreenState extends State<LoginScreen> {
               backgroundColor: Colors.white,
               foregroundColor: onSurface,
 
-              side: const BorderSide(
-                color: outlineVariant,
-              ),
+              side: const BorderSide(color: outlineVariant),
 
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -669,7 +627,6 @@ class _LoginScreenState extends State<LoginScreen> {
         // ============================================================
         // REGISTER
         // ============================================================
-
         Center(
           child: Wrap(
             alignment: WrapAlignment.center,
@@ -720,10 +677,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       keyboardType: keyboardType,
 
-      style: GoogleFonts.plusJakartaSans(
-        fontSize: 16,
-        color: onSurface,
-      ),
+      style: GoogleFonts.plusJakartaSans(fontSize: 16, color: onSurface),
 
       decoration: InputDecoration(
         hintText: hintText,
@@ -734,10 +688,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
 
         // Use the icon passed to the function.
-        prefixIcon: Icon(
-          icon,
-          color: outline,
-        ),
+        prefixIcon: Icon(icon, color: outline),
 
         filled: true,
 
@@ -751,18 +702,13 @@ class _LoginScreenState extends State<LoginScreen> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
 
-          borderSide: const BorderSide(
-            color: outlineVariant,
-          ),
+          borderSide: const BorderSide(color: outlineVariant),
         ),
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
 
-          borderSide: const BorderSide(
-            color: primary,
-            width: 1.5,
-          ),
+          borderSide: const BorderSide(color: primary, width: 1.5),
         ),
       ),
     );
@@ -778,10 +724,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       obscureText: _obscurePassword,
 
-      style: GoogleFonts.plusJakartaSans(
-        fontSize: 16,
-        color: onSurface,
-      ),
+      style: GoogleFonts.plusJakartaSans(fontSize: 16, color: onSurface),
 
       decoration: InputDecoration(
         hintText: 'Kata Laluan',
@@ -792,10 +735,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
 
         // Password icon
-        prefixIcon: const Icon(
-          Icons.lock_outline,
-          color: outline,
-        ),
+        prefixIcon: const Icon(Icons.lock_outline, color: outline),
 
         // Show / hide password
         suffixIcon: IconButton(
@@ -826,18 +766,13 @@ class _LoginScreenState extends State<LoginScreen> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
 
-          borderSide: const BorderSide(
-            color: outlineVariant,
-          ),
+          borderSide: const BorderSide(color: outlineVariant),
         ),
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
 
-          borderSide: const BorderSide(
-            color: primary,
-            width: 1.5,
-          ),
+          borderSide: const BorderSide(color: primary, width: 1.5),
         ),
       ),
     );
