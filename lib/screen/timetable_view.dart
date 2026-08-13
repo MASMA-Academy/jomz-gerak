@@ -321,6 +321,32 @@ class _TimetableScreenState extends State<TimetableScreen> {
                     : Colors.white,
                 border: const Border(top: BorderSide(color: surfaceVariant)),
               ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      time[0],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: onSurface,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      time[1],
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: onSurface,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
 
