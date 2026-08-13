@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
 
   const ProfileScreen({
     super.key,
-    this.isLoggedIn = false,
+    this.isLoggedIn = true,
     this.name,
     this.email,
     this.phone,
