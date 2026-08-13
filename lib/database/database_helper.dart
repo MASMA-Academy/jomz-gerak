@@ -196,6 +196,24 @@ class DatabaseHelper {
   }
 
   // ================================================================
+  // CHECK EMAIL EXISTS
+  // ================================================================
+
+  Future<bool> emailExists(String email) async {
+    final db = await database;
+
+    final result = await db.query(
+      'users',
+      columns: ['id'],
+      where: 'LOWER(email) = LOWER(?)',
+      whereArgs: [email.trim()],
+      limit: 1,
+    );
+
+    return result.isNotEmpty;
+  }
+
+  // ================================================================
   // SAVE / UPDATE USER
   // ================================================================
 

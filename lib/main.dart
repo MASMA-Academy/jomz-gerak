@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
@@ -10,6 +9,7 @@ import 'screen/profile_view.dart';
 import 'screen/timetable_view.dart';
 import 'screen/home_view.dart';
 import 'screen/list_station_view.dart';
+import 'screen/register_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +49,7 @@ class JomzGerakApp extends StatelessWidget {
 
       routes: {
         '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
 
         '/home': (context) => const HomeScreen(),
 
