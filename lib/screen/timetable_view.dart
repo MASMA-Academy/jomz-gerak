@@ -472,6 +472,7 @@ class _TimetableScreenState extends State<TimetableScreen> {
           case 3:
             // Notifikasi (Notifications) - TODO: implement notification screen
             debugPrint('Navigate to notifications');
+            Navigator.pushNamed(context, '/notifications');
             break;
           case 4:
             // Profil (Profile)

@@ -830,6 +830,7 @@ class _BottomNavigation extends StatelessWidget {
 
             onTap: () {
               debugPrint('Navigate to notifications');
+              Navigator.pushNamed(context, '/notifications');
             },
           ),
 

@@ -130,13 +130,11 @@ class _StationListScreenState extends State<StationListScreen> {
     return _stations.where((station) {
       // Search filter
       final matchesSearch =
-          searchText.isEmpty ||
-          station.name.toLowerCase().contains(searchText);
+          searchText.isEmpty || station.name.toLowerCase().contains(searchText);
 
       // Transport filter
       final matchesFilter =
-          _selectedFilter == 'Semua' ||
-          station.lines.contains(_selectedFilter);
+          _selectedFilter == 'Semua' || station.lines.contains(_selectedFilter);
 
       return matchesSearch && matchesFilter;
     }).toList();
@@ -191,19 +189,12 @@ class _StationListScreenState extends State<StationListScreen> {
       context: context,
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(24),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
         return SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(
-              20,
-              20,
-              20,
-              24,
-            ),
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,34 +210,29 @@ class _StationListScreenState extends State<StationListScreen> {
 
                 const SizedBox(height: 16),
 
-                ..._filters.map(
-                  (filter) {
-                    return ListTile(
-                      contentPadding: EdgeInsets.zero,
+                ..._filters.map((filter) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
 
-                      title: Text(
-                        filter,
-                        style: GoogleFonts.plusJakartaSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: onSurface,
-                        ),
+                    title: Text(
+                      filter,
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: onSurface,
                       ),
+                    ),
 
-                      trailing: _selectedFilter == filter
-                          ? const Icon(
-                              Icons.check,
-                              color: primary,
-                            )
-                          : null,
+                    trailing: _selectedFilter == filter
+                        ? const Icon(Icons.check, color: primary)
+                        : null,
 
-                      onTap: () {
-                        _selectFilter(filter);
-                        Navigator.pop(context);
-                      },
-                    );
-                  },
-                ),
+                    onTap: () {
+                      _selectFilter(filter);
+                      Navigator.pop(context);
+                    },
+                  );
+                }),
               ],
             ),
           ),
@@ -291,6 +277,7 @@ class _StationListScreenState extends State<StationListScreen> {
       case 3:
         // Notifikasi (Notifications) - TODO: implement notification screen
         debugPrint('Navigate to notifications');
+        Navigator.pushNamed(context, '/notifications');
         break;
       case 4:
         // Profil (Profile)
@@ -311,29 +298,24 @@ class _StationListScreenState extends State<StationListScreen> {
       // --------------------------------------------------------------
       // APP BAR
       // --------------------------------------------------------------
-
       appBar: _buildAppBar(),
 
       // --------------------------------------------------------------
       // BODY
       // --------------------------------------------------------------
-
       body: Column(
         children: [
           // Search + filters
           _buildSearchSection(),
 
           // Station list
-          Expanded(
-            child: _buildStationList(),
-          ),
+          Expanded(child: _buildStationList()),
         ],
       ),
 
       // --------------------------------------------------------------
       // BOTTOM NAVIGATION
       // --------------------------------------------------------------
-
       bottomNavigationBar: _buildBottomNavigation(),
     );
   }
@@ -351,11 +333,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
       leading: IconButton(
         onPressed: _goBack,
-        icon: const Icon(
-          Icons.chevron_left,
-          color: primary,
-          size: 28,
-        ),
+        icon: const Icon(Icons.chevron_left, color: primary, size: 28),
       ),
 
       title: Text(
@@ -370,10 +348,7 @@ class _StationListScreenState extends State<StationListScreen> {
       actions: [
         IconButton(
           onPressed: _openFilter,
-          icon: const Icon(
-            Icons.filter_list,
-            color: primary,
-          ),
+          icon: const Icon(Icons.filter_list, color: primary),
         ),
 
         const SizedBox(width: 8),
@@ -391,28 +366,19 @@ class _StationListScreenState extends State<StationListScreen> {
 
       color: background,
 
-      padding: const EdgeInsets.fromLTRB(
-        20,
-        8,
-        20,
-        16,
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
 
       child: Column(
         children: [
           // ----------------------------------------------------------
           // SEARCH BAR
           // ----------------------------------------------------------
-
           TextField(
             controller: _searchController,
 
             onChanged: _onSearchChanged,
 
-            style: GoogleFonts.plusJakartaSans(
-              fontSize: 14,
-              color: onSurface,
-            ),
+            style: GoogleFonts.plusJakartaSans(fontSize: 14, color: onSurface),
 
             decoration: InputDecoration(
               hintText: 'Cari stesen...',
@@ -422,10 +388,7 @@ class _StationListScreenState extends State<StationListScreen> {
                 color: outline,
               ),
 
-              prefixIcon: const Icon(
-                Icons.search,
-                color: outline,
-              ),
+              prefixIcon: const Icon(Icons.search, color: outline),
 
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
@@ -434,10 +397,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
                         setState(() {});
                       },
-                      icon: const Icon(
-                        Icons.clear,
-                        color: outline,
-                      ),
+                      icon: const Icon(Icons.clear, color: outline),
                     )
                   : null,
 
@@ -452,17 +412,12 @@ class _StationListScreenState extends State<StationListScreen> {
 
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: outlineVariant,
-                ),
+                borderSide: const BorderSide(color: outlineVariant),
               ),
 
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: primary,
-                  width: 1,
-                ),
+                borderSide: const BorderSide(color: primary, width: 1),
               ),
             ),
           ),
@@ -472,7 +427,6 @@ class _StationListScreenState extends State<StationListScreen> {
           // ----------------------------------------------------------
           // FILTER CHIPS
           // ----------------------------------------------------------
-
           SizedBox(
             height: 34,
 
@@ -504,10 +458,7 @@ class _StationListScreenState extends State<StationListScreen> {
   // FILTER CHIP
   // ================================================================
 
-  Widget _buildFilterChip({
-    required String filter,
-    required bool isSelected,
-  }) {
+  Widget _buildFilterChip({required String filter, required bool isSelected}) {
     return GestureDetector(
       onTap: () {
         _selectFilter(filter);
@@ -516,23 +467,14 @@ class _StationListScreenState extends State<StationListScreen> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 180),
 
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 7,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
 
         decoration: BoxDecoration(
-          color: isSelected
-              ? primary
-              : surface,
+          color: isSelected ? primary : surface,
 
           borderRadius: BorderRadius.circular(999),
 
-          border: Border.all(
-            color: isSelected
-                ? primary
-                : outlineVariant,
-          ),
+          border: Border.all(color: isSelected ? primary : outlineVariant),
 
           boxShadow: isSelected
               ? [
@@ -552,9 +494,7 @@ class _StationListScreenState extends State<StationListScreen> {
             fontSize: 12,
             fontWeight: FontWeight.w500,
 
-            color: isSelected
-                ? Colors.white
-                : onSurface,
+            color: isSelected ? Colors.white : onSurface,
           ),
         ),
       ),
@@ -573,12 +513,7 @@ class _StationListScreenState extends State<StationListScreen> {
     }
 
     return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(
-        20,
-        8,
-        20,
-        24,
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
 
       itemCount: stations.length,
 
@@ -619,9 +554,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
             borderRadius: BorderRadius.circular(12),
 
-            border: Border.all(
-              color: outlineVariant.withOpacity(0.5),
-            ),
+            border: Border.all(color: outlineVariant.withOpacity(0.5)),
 
             boxShadow: const [
               BoxShadow(
@@ -637,7 +570,6 @@ class _StationListScreenState extends State<StationListScreen> {
               // ------------------------------------------------------
               // LEFT
               // ------------------------------------------------------
-
               Expanded(
                 child: Row(
                   children: [
@@ -651,11 +583,7 @@ class _StationListScreenState extends State<StationListScreen> {
                         color: surfaceContainerHigh,
                       ),
 
-                      child: Icon(
-                        station.icon,
-                        color: primary,
-                        size: 22,
-                      ),
+                      child: Icon(station.icon, color: primary, size: 22),
                     ),
 
                     const SizedBox(width: 16),
@@ -663,8 +591,7 @@ class _StationListScreenState extends State<StationListScreen> {
                     // Station information
                     Expanded(
                       child: Column(
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
 
                         children: [
                           // Station name
@@ -689,11 +616,9 @@ class _StationListScreenState extends State<StationListScreen> {
                             spacing: 6,
                             runSpacing: 4,
 
-                            children: station.lines.map(
-                              (line) {
-                                return _buildLineBadge(line);
-                              },
-                            ).toList(),
+                            children: station.lines.map((line) {
+                              return _buildLineBadge(line);
+                            }).toList(),
                           ),
                         ],
                       ),
@@ -707,7 +632,6 @@ class _StationListScreenState extends State<StationListScreen> {
               // ------------------------------------------------------
               // RIGHT
               // ------------------------------------------------------
-
               Row(
                 mainAxisSize: MainAxisSize.min,
 
@@ -724,11 +648,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
                   const SizedBox(width: 8),
 
-                  const Icon(
-                    Icons.chevron_right,
-                    color: outline,
-                    size: 20,
-                  ),
+                  const Icon(Icons.chevron_right, color: outline, size: 20),
                 ],
               ),
             ],
@@ -744,10 +664,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
   Widget _buildLineBadge(String line) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 6,
-        vertical: 2,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
 
       decoration: BoxDecoration(
         color: _getLineColor(line),
@@ -819,11 +736,7 @@ class _StationListScreenState extends State<StationListScreen> {
                 color: surfaceContainerHigh,
               ),
 
-              child: const Icon(
-                Icons.search_off,
-                color: primary,
-                size: 30,
-              ),
+              child: const Icon(Icons.search_off, color: primary, size: 30),
             ),
 
             const SizedBox(height: 16),
@@ -847,10 +760,7 @@ class _StationListScreenState extends State<StationListScreen> {
 
               textAlign: TextAlign.center,
 
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 13,
-                color: outline,
-              ),
+              style: GoogleFonts.plusJakartaSans(fontSize: 13, color: outline),
             ),
           ],
         ),
@@ -872,9 +782,7 @@ class _StationListScreenState extends State<StationListScreen> {
         decoration: const BoxDecoration(
           color: surface,
 
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
 
           boxShadow: [
             BoxShadow(
@@ -950,9 +858,7 @@ class _StationListScreenState extends State<StationListScreen> {
         borderRadius: BorderRadius.circular(12),
 
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 6,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 6),
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -977,9 +883,7 @@ class _StationListScreenState extends State<StationListScreen> {
                 child: Icon(
                   isSelected ? activeIcon : icon,
 
-                  color: isSelected
-                      ? primary
-                      : outline,
+                  color: isSelected ? primary : outline,
 
                   size: 24,
                 ),
@@ -997,13 +901,9 @@ class _StationListScreenState extends State<StationListScreen> {
                 style: GoogleFonts.plusJakartaSans(
                   fontSize: 11,
 
-                  fontWeight: isSelected
-                      ? FontWeight.w700
-                      : FontWeight.w400,
+                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
 
-                  color: isSelected
-                      ? primary
-                      : outline,
+                  color: isSelected ? primary : outline,
                 ),
               ),
             ],

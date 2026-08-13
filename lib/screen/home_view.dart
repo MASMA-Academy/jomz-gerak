@@ -118,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _openNotifications() {
     debugPrint('Open notifications');
+    Navigator.pushNamed(context, '/notifications');
 
     // TODO:
     // Navigate to notification screen.
@@ -129,38 +130,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _openNearbyStations() {
     debugPrint('Nearby stations');
-    // Navigate to station list (same as bottom navigation)
-    Navigator.pushNamed(context, '/stationlist');
+
+    // TODO:
+    // Navigate to station list.
   }
 
   void _openSchedule() {
     debugPrint('Schedule');
-    // Navigate to timetable screen (same as bottom navigation)
-    Navigator.pushNamed(context, '/timetable');
+
+    // TODO:
+    // Navigate to schedule screen.
   }
 
   void _openMap() {
     debugPrint('Map');
-    // Try to navigate to a map screen if registered, otherwise show message
-    if (Navigator.canPop(context)) {
-      // pushNamed will throw if route not found, so check via ModalRoute?
-    }
-    final routeExists = ModalRoute.of(context) != null; // fallback check
-    try {
-      Navigator.pushNamed(context, '/stationlist');
-    } catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Map screen not implemented')));
-    }
+
+    // TODO:
+    // Navigate to map screen.
   }
 
   void _openAnnouncements() {
     debugPrint('Announcements');
-    // Try to navigate to announcements/notifications route if available
-    try {
-      Navigator.pushNamed(context, '/notifications');
-    } catch (_) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Announcements screen not implemented')));
-    }
+
+    // TODO:
+    // Navigate to notification / announcement screen.
   }
 
   // ================================================================
@@ -202,6 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         // Notifikasi (Notifications) - TODO: implement notification screen
         debugPrint('Navigate to notifications');
+        Navigator.pushNamed(context, '/notifications');
         break;
       case 4:
         // Profil (Profile)

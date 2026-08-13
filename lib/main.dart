@@ -10,6 +10,7 @@ import 'screen/timetable_view.dart';
 import 'screen/home_view.dart';
 import 'screen/list_station_view.dart';
 import 'screen/register_view.dart';
+import 'screen/notification_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,13 +46,16 @@ class JomzGerakApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF031636)),
       ),
 
-      initialRoute: '/login',
+      initialRoute: '/home',
 
       routes: {
         '/login': (context) => const LoginScreen(),
+
         '/register': (context) => const RegisterScreen(),
 
         '/home': (context) => const HomeScreen(),
+
+        '/notifications': (context) => const NotificationScreen(),
 
         '/profile': (context) => const ProfileScreen(),
 
