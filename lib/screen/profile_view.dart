@@ -473,7 +473,7 @@ class _BottomNavigation extends StatelessWidget {
             icon: Icons.home_outlined,
             label: 'Utama',
             onTap: () {
-              // Add /home route later
+              Navigator.pushNamed(context, '/home');
             },
           ),
 
@@ -481,7 +481,7 @@ class _BottomNavigation extends StatelessWidget {
             icon: Icons.location_on_outlined,
             label: 'Stesen',
             onTap: () {
-              // Add /station route later
+              Navigator.pushNamed(context, '/stationlist');
             },
           ),
 
@@ -489,14 +489,16 @@ class _BottomNavigation extends StatelessWidget {
             icon: Icons.calendar_month_outlined,
             label: 'Jadual',
             onTap: () {
-              // Add /timetable route later
+              Navigator.pushNamed(context, '/timetable');
             },
           ),
 
           _NavItem(
             icon: Icons.notifications_none,
             label: 'Notifikasi',
-            onTap: () {},
+            onTap: () {
+              debugPrint('Navigate to notifications');
+            },
           ),
 
           _NavItem(

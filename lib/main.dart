@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'screen/login_view.dart';
 import 'screen/profile_view.dart';
 import 'screen/timetable_view.dart';
+import 'screen/home_view.dart';
+import 'screen/list_station_view.dart';
 // import 'screen/register_view.dart';
 
 void main() {
@@ -23,12 +25,14 @@ class JomzGerakApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF031636)),
       ),
 
-      initialRoute: '/login',
+      initialRoute: '/home',
 
       routes: {
         '/login': (context) => const LoginScreen(),
         '/profile': (context) => const ProfileScreen(isLoggedIn: false),
         '/timetable': (context) => const TimetableScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/stationlist': (context) => const StationListScreen(),
       },
     );
   }

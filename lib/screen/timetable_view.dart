@@ -454,6 +454,30 @@ class _TimetableScreenState extends State<TimetableScreen> {
         setState(() {
           selectedBottomNav = index;
         });
+
+        // Navigate based on index
+        switch (index) {
+          case 0:
+            // Utama (Home)
+            Navigator.pushNamed(context, '/home');
+            break;
+          case 1:
+            // Stesen (Station List)
+            Navigator.pushNamed(context, '/stationlist');
+            break;
+          case 2:
+            // Jadual (Timetable) - already on this page
+            Navigator.pushNamed(context, '/timetable');
+            break;
+          case 3:
+            // Notifikasi (Notifications) - TODO: implement notification screen
+            debugPrint('Navigate to notifications');
+            break;
+          case 4:
+            // Profil (Profile)
+            Navigator.pushNamed(context, '/profile');
+            break;
+        }
       },
       items: const [
         BottomNavigationBarItem(
