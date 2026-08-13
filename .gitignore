@@ -44,3 +44,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 pubspec.lock
+stitch-assets/timetable_code.html
+stitch-assets/timetable_screenshot.png
