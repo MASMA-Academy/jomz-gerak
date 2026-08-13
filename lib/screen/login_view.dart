@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../database/database_helper.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -17,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
 
   bool _obscurePassword = true;
-
+  bool _isLoading = false;
   // ================================================================
   // COLORS
   // ================================================================
@@ -47,27 +49,68 @@ class _LoginScreenState extends State<LoginScreen> {
   // LOGIN
   // ================================================================
 
-  void _login() {
-    final email = emailController.text.trim();
-    final password = passwordController.text;
+  Future<void> _login() async {
+    final username = emailController.text.trim();
+    final password = passwordController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
+    if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text(
-            'Sila masukkan email/no. telefon dan kata laluan.',
-          ),
+          content: Text('Sila masukkan email/no. telefon dan kata laluan.'),
         ),
       );
 
       return;
     }
 
-    // TODO:
-    // Connect your login API here.
+    setState(() {
+      _isLoading = true;
+    });
 
-    debugPrint('Email: $email');
-    debugPrint('Password: $password');
+    try {
+      final user = await DatabaseHelper.instance.loginUser(
+        username: username,
+        password: password,
+      );
+
+      if (!mounted) return;
+
+      if (user == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Email/no. telefon atau kata laluan tidak sah.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+
+        return;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Selamat datang, ${user['name']}!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+
+      // Navigate to home page.
+      Navigator.pushReplacementNamed(context, '/home');
+    } catch (e) {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Ralat semasa log masuk: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   // ================================================================
@@ -498,7 +541,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 54,
 
           child: ElevatedButton(
-            onPressed: _login,
+            onPressed: _isLoading ? null : _login,
 
             style: ElevatedButton.styleFrom(
               backgroundColor: primary,
@@ -511,14 +554,22 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
 
-            child: Text(
-              'Log Masuk',
-
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+            child: _isLoading
+                ? const SizedBox(
+                    width: 22,
+                    height: 22,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.white,
+                    ),
+                  )
+                : Text(
+                    'Log Masuk',
+                    style: GoogleFonts.plusJakartaSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
           ),
         ),
 
